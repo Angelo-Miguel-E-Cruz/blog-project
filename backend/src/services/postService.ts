@@ -43,13 +43,14 @@ export async function getPostForAdmin(id: string) {
 
 interface PostInput {
   title: string;
-  content: unknown;
+  content?: unknown; // optional at the type level — Zod infers z.unknown() fields this way; defaulted below if missing
   status: PostStatus;
   excerpt?: string; // manual override, if provided
   featuredImageUrl?: string | null;
   slug?: string; // manual override, if provided (edit flow)
 }
 
+const EMPTY_DOC = { type: "doc", content: [{ type: "paragraph" }] };
 async function resolveUniqueSlug(title: string, manualSlug: string | undefined, excludeId?: string) {
   const base = slugify(manualSlug || title);
   if (!base) throw new AppError(400, "Could not derive a valid slug from the title.");
@@ -63,12 +64,13 @@ async function resolveUniqueSlug(title: string, manualSlug: string | undefined, 
 
 export async function createPost(input: PostInput) {
   const slug = await resolveUniqueSlug(input.title, input.slug);
-  const excerpt = input.excerpt?.trim() || generateExcerpt(input.content);
+  const content = input.content ?? EMPTY_DOC;
+  const excerpt = input.excerpt?.trim() || generateExcerpt(content);
 
   const post = await postRepo.createPost({
     title: input.title,
     slug,
-    content: input.content as any,
+    content: content as any,
     excerpt,
     excerptIsManual: Boolean(input.excerpt?.trim()),
     featuredImageUrl: input.featuredImageUrl ?? null,
