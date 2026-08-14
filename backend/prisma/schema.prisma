@@ -1,0 +1,57 @@
+// Prisma schema — see design doc §6.1 for rationale.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Post {
+  id                String     @id @default(uuid())
+  title             String
+  slug              String     @unique
+  content           Json // Tiptap JSON document
+  excerpt           String?
+  excerptIsManual   Boolean    @default(false) @map("excerpt_is_manual")
+  featuredImageUrl  String?    @map("featured_image_url")
+  status            PostStatus @default(DRAFT)
+  createdAt         DateTime   @default(now()) @map("created_at")
+  updatedAt         DateTime   @updatedAt @map("updated_at")
+  publishedAt       DateTime?  @map("published_at")
+
+  images Image[]
+
+  // Composite index powers the cursor-paginated public listing (design §4.2)
+  @@index([status, publishedAt, id], name: "idx_posts_status_published_id")
+  @@map("posts")
+}
+
+model Image {
+  id          String   @id @default(uuid())
+  post        Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId      String?  @map("post_id")
+  storagePath String   @map("storage_path")
+  imageUrl    String   @map("image_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("images")
+}

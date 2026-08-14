@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    @apply bg-mustard/40;
+  }
+  a {
+    @apply underline decoration-mustard decoration-2 underline-offset-2;
+  }
+}
+
+@layer components {
+  .prose-blog {
+    @apply leading-relaxed text-ink/90 dark:text-parchment/90;
+  }
+  .prose-blog h2 {
+    @apply font-display text-2xl font-semibold mt-8 mb-3;
+  }
+  .prose-blog h3 {
+    @apply font-display text-xl font-semibold mt-6 mb-2;
+  }
+  .prose-blog p {
+    @apply my-4;
+  }
+  .prose-blog ul {
+    @apply list-disc pl-6 my-4 space-y-1;
+  }
+  .prose-blog ol {
+    @apply list-decimal pl-6 my-4 space-y-1;
+  }
+  .prose-blog img {
+    @apply rounded-sm my-6 w-full object-cover;
+  }
+  .prose-blog a {
+    @apply text-mustard-dim dark:text-mustard;
+  }
+  .prose-blog .ProseMirror {
+    @apply outline-none;
+  }
+}
