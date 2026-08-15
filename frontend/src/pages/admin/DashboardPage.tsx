@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteAdminPost, fetchAdminPosts } from "../../api/posts";
 import { useAuth } from "../../context/AuthContext";
+import { AdminMenu } from "../../components/AdminMenu";
 
 function StatusBadge({ status }: { status: "DRAFT" | "PUBLISHED" }) {
   const isDraft = status === "DRAFT";
@@ -54,31 +55,29 @@ export function DashboardPage() {
   return (
     <div>
       {flash && (
-        <div className="mb-6 bg-mustard/15 dark:bg-mustard/20 border border-mustard/40 text-mustard-dim dark:text-mustard text-sm rounded-sm px-4 py-2">
+        <div className="mb-6 bg-mustard/15 dark:bg-mustard/20 border border-mustard/40 text-mustard-dim dark:text-mustard text-sm rounded-sm px-4 py-2 select-none">
           {flash}
         </div>
       )}
 
       <div className="flex items-center justify-between mb-8">
-        <h1 className="font-display text-3xl font-semibold">Dashboard</h1>
-        <div className="flex gap-3">
+        <h1 className="font-display text-3xl font-semibold select-none">Dashboard</h1>
+        <div className="flex items-center gap-3">
           <Link
             to="/admin/posts/new"
-            className="bg-spruce dark:bg-mustard text-parchment dark:text-spruce px-4 py-2 rounded-sm text-sm font-medium no-underline hover:bg-spruce-light dark:hover:bg-mustard-dim"
+            className="bg-spruce dark:bg-mustard text-parchment dark:text-spruce px-4 py-2 rounded-sm text-sm font-medium no-underline hover:bg-spruce-light dark:hover:bg-mustard-dim select-none"
           >
             New post
           </Link>
-          <button onClick={() => logout()} className="text-sm text-ink/50 dark:text-parchment/50 hover:text-ink dark:hover:text-parchment">
-            Sign out
-          </button>
+          <AdminMenu onSignOut={() => logout()} />
         </div>
       </div>
 
-      {isLoading && <p className="text-ink/50 dark:text-parchment/50">Loading…</p>}
+      {isLoading && <p className="text-ink/50 dark:text-parchment/50 select-none">Loading…</p>}
 
-      {posts && posts.length === 0 && <p className="text-ink/50 dark:text-parchment/50">No posts yet. Create your first one.</p>}
+      {posts && posts.length === 0 && <p className="text-ink/50 dark:text-parchment/50 select-none">No posts yet. Create your first one.</p>}
 
-      <div className="divide-y divide-ink/10 dark:divide-parchment/10">
+      <div className="divide-y divide-ink/10 dark:divide-parchment/10 select-none">
         {posts?.map((post) => (
           <div key={post.id} className="py-4 flex items-center justify-between gap-4">
             <div>

@@ -3,6 +3,7 @@ import { apiClient } from "./client";
 export interface AuthUser {
   id: string;
   email: string;
+  mustChangePassword: boolean;
 }
 
 export async function login(email: string, password: string): Promise<AuthUser> {
@@ -21,4 +22,8 @@ export async function fetchCurrentUser(): Promise<AuthUser | null> {
   } catch {
     return null;
   }
+}
+
+export async function changePassword(currentPassword: string, newPassword: string): Promise<void> {
+  await apiClient.put("/auth/password", { currentPassword, newPassword });
 }
