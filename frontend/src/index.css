@@ -37,6 +37,6 @@
     @apply text-mustard-dim dark:text-mustard;
   }
   .prose-blog .ProseMirror {
-    @apply outline-none;
+    @apply outline-none min-h-[260px];
   }
 }

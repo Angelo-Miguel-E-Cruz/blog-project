@@ -62,7 +62,7 @@ export function ChangePasswordPage() {
             required
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
-            className="w-full border border-ink/20 dark:border-parchment/20 rounded-sm px-3 py-2 bg-white/60 dark:bg-parchment/10 dark:text-parchment focus:outline-none focus:ring-2 focus:ring-mustard"
+            className="w-full border border-ink/20 dark:border-parchment/20 rounded-sm px-3 py-2 bg-white/60 dark:bg-parchment/10 dark:text-parchment focus:outline-none focus:ring-2 focus:ring-mustard select-none"
           />
         </div>
         <div>
@@ -76,7 +76,7 @@ export function ChangePasswordPage() {
             minLength={8}
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            className="w-full border border-ink/20 dark:border-parchment/20 rounded-sm px-3 py-2 bg-white/60 dark:bg-parchment/10 dark:text-parchment focus:outline-none focus:ring-2 focus:ring-mustard"
+            className="w-full border border-ink/20 dark:border-parchment/20 rounded-sm px-3 py-2 bg-white/60 dark:bg-parchment/10 dark:text-parchment focus:outline-none focus:ring-2 focus:ring-mustard select-none"
           />
         </div>
         <div>
@@ -90,7 +90,7 @@ export function ChangePasswordPage() {
             minLength={8}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full border border-ink/20 dark:border-parchment/20 rounded-sm px-3 py-2 bg-white/60 dark:bg-parchment/10 dark:text-parchment focus:outline-none focus:ring-2 focus:ring-mustard"
+            className="w-full border border-ink/20 dark:border-parchment/20 rounded-sm px-3 py-2 bg-white/60 dark:bg-parchment/10 dark:text-parchment focus:outline-none focus:ring-2 focus:ring-mustard select-none"
           />
         </div>
 
@@ -99,7 +99,7 @@ export function ChangePasswordPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-spruce dark:bg-mustard text-parchment dark:text-spruce font-medium py-2 rounded-sm hover:bg-spruce-light dark:hover:bg-mustard-dim transition-colors disabled:opacity-60"
+          className="w-full bg-spruce dark:bg-mustard text-parchment dark:text-spruce font-medium py-2 rounded-sm hover:bg-spruce-light dark:hover:bg-mustard-dim transition-colors disabled:opacity-60 select-none"
         >
           {isSubmitting ? "Saving…" : "Save new password"}
         </button>
