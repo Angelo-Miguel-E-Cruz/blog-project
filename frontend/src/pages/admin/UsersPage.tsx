@@ -57,7 +57,7 @@ export function UsersPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <Link to="/admin" className="text-sm text-ink/50 dark:text-parchment/50 no-underline hover:text-mustard-dim dark:hover:text-mustard">
+          <Link to="/admin" className="text-sm text-ink/50 dark:text-parchment/50 no-underline hover:text-mustard-dim dark:hover:text-mustard select-none">
             ← Dashboard
           </Link>
           <h1 className="font-display text-3xl font-semibold mt-2">Admins</h1>
@@ -65,9 +65,9 @@ export function UsersPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="mb-10 space-y-3 max-w-sm">
-        <h2 className="font-display text-lg font-semibold">Add an admin</h2>
+        <h2 className="font-display text-lg font-semibold select-none">Add an admin</h2>
         <div>
-          <label className="block text-sm mb-1" htmlFor="new-admin-email">
+          <label className="block text-sm mb-1" htmlFor="new-admin-email select-none">
             Email
           </label>
           <input
@@ -80,7 +80,7 @@ export function UsersPage() {
           />
         </div>
         <div>
-          <label className="block text-sm mb-1" htmlFor="new-admin-password">
+          <label className="block text-sm mb-1" htmlFor="new-admin-password select-none">
             Temporary password
           </label>
           <input
@@ -100,15 +100,15 @@ export function UsersPage() {
         <button
           type="submit"
           disabled={createMutation.isPending}
-          className="bg-spruce dark:bg-mustard text-parchment dark:text-spruce px-4 py-2 rounded-sm text-sm font-medium hover:bg-spruce-light dark:hover:bg-mustard-dim disabled:opacity-50"
+          className="bg-spruce dark:bg-mustard text-parchment dark:text-spruce px-4 py-2 rounded-sm text-sm font-medium hover:bg-spruce-light dark:hover:bg-mustard-dim disabled:opacity-50 select-none"
         >
           {createMutation.isPending ? "Adding…" : "Add admin"}
         </button>
       </form>
 
-      <h2 className="font-display text-lg font-semibold mb-3">Current admins</h2>
+      <h2 className="font-display text-lg font-semibold mb-3 select-none">Current admins</h2>
 
-      {isLoading && <p className="text-ink/50 dark:text-parchment/50">Loading…</p>}
+      {isLoading && <p className="text-ink/50 dark:text-parchment/50 select-none">Loading…</p>}
 
       <div className="divide-y divide-ink/10 dark:divide-parchment/10">
         {admins?.map((admin) => {
@@ -116,11 +116,11 @@ export function UsersPage() {
           return (
             <div key={admin.id} className="py-4 flex items-center justify-between gap-4">
               <div>
-                <p className="font-medium">
+                <p className="font-medium select-none">
                   {admin.email}
                   {isSelf && <span className="text-xs text-ink/40 dark:text-parchment/40 ml-2">(you)</span>}
                 </p>
-                <p className="text-xs text-ink/40 dark:text-parchment/40">
+                <p className="text-xs text-ink/40 dark:text-parchment/40 select-none">
                   Added {new Date(admin.createdAt).toLocaleDateString()}
                 </p>
               </div>

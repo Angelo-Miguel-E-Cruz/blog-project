@@ -42,18 +42,18 @@ export function ChangePasswordPage() {
 
   return (
     <div className="max-w-sm mx-auto py-16">
-      <h1 className="font-display text-2xl font-semibold mb-2 text-center">
+      <h1 className="font-display text-2xl font-semibold mb-2 text-center select-none">
         {isForced ? "Set a new password" : "Change password"}
       </h1>
       {isForced && (
-        <p className="text-sm text-ink/60 dark:text-parchment/60 text-center mb-8">
+        <p className="text-sm text-ink/60 dark:text-parchment/60 text-center mb-8 select-none">
           You're signed in with a temporary password. Set your own before continuing.
         </p>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm mb-1" htmlFor="current-password">
+          <label className="block text-sm mb-1" htmlFor="current-password select-none">
             Current password
           </label>
           <input
@@ -66,7 +66,7 @@ export function ChangePasswordPage() {
           />
         </div>
         <div>
-          <label className="block text-sm mb-1" htmlFor="new-password">
+          <label className="block text-sm mb-1" htmlFor="new-password select-none">
             New password
           </label>
           <input
@@ -80,7 +80,7 @@ export function ChangePasswordPage() {
           />
         </div>
         <div>
-          <label className="block text-sm mb-1" htmlFor="confirm-password">
+          <label className="block text-sm mb-1" htmlFor="confirm-password select-none">
             Confirm new password
           </label>
           <input
