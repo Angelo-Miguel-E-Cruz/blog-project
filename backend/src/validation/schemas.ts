@@ -17,3 +17,13 @@ export const createPostSchema = z.object({
 });
 
 export const updatePostSchema = createPostSchema.partial();
+
+export const createAdminSchema = z.object({
+  email: z.string().trim().email(),
+  password: z.string().min(8, "Password must be at least 8 characters."),
+});
+
+export const changePasswordSchema = z.object({
+  currentPassword: z.string().min(1),
+  newPassword: z.string().min(8, "Password must be at least 8 characters."),
+});

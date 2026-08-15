@@ -15,7 +15,7 @@ export function PostPage() {
     return (
       <div className="text-center py-20">
         <p className="text-ink/60 mb-4">This post doesn't exist or isn't published.</p>
-        <Link to="/" className="text-mustard-dim">
+        <Link to="/" className="text-mustard-dim select-none">
           Back to all posts
         </Link>
       </div>

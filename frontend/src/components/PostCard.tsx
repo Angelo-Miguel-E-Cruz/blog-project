@@ -9,7 +9,7 @@ function formatDate(iso: string | null) {
 export function PostCard({ post }: { post: PostSummary }) {
   return (
     <article className="group border-b border-ink/10 dark:border-parchment/10 py-8 first:pt-0">
-      <Link to={`/blog/${post.slug}`} className="no-underline">
+      <Link to={`/blog/${post.slug}`} className="no-underline select-none">
         <div className="flex gap-6 items-start">
           {post.featuredImageUrl && (
             <img

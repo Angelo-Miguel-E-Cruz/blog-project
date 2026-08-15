@@ -8,6 +8,8 @@ import { PostPage } from "./pages/public/PostPage";
 import { LoginPage } from "./pages/admin/LoginPage";
 import { DashboardPage } from "./pages/admin/DashboardPage";
 import { PostEditorPage } from "./pages/admin/PostEditorPage";
+import { UsersPage } from "./pages/admin/UsersPage";
+import { ChangePasswordPage } from "./pages/admin/ChangePasswordPage";
 import { ThemeProvider } from "./context/ThemeContext";
 
 const queryClient = new QueryClient({
@@ -24,12 +26,13 @@ export default function App() {
               <Route element={<Layout />}>
                 <Route index element={<HomePage />} />
                 <Route path="blog/:slug" element={<PostPage />} />
-
                 <Route path="admin/login" element={<LoginPage />} />
                 <Route element={<ProtectedRoute />}>
                   <Route path="admin" element={<DashboardPage />} />
                   <Route path="admin/posts/new" element={<PostEditorPage />} />
                   <Route path="admin/posts/:id" element={<PostEditorPage />} />
+                  <Route path="admin/users" element={<UsersPage />} />
+                  <Route path="admin/change-password" element={<ChangePasswordPage />} />
                 </Route>
               </Route>
             </Routes>

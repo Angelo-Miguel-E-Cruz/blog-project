@@ -8,6 +8,7 @@ import authRoutes from "./routes/auth.routes";
 import postsRoutes from "./routes/posts.routes";
 import adminPostsRoutes from "./routes/adminPosts.routes";
 import imagesRoutes from "./routes/images.routes";
+import usersRoutes from "./routes/users.routes";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler";
 
 const app = express();
@@ -50,6 +51,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postsRoutes);
 app.use("/api/admin/posts", adminPostsRoutes);
 app.use("/api/admin/images", imagesRoutes);
+app.use("/api/admin/users", usersRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
