@@ -38,9 +38,9 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: env.isProduction,
-      sameSite: "strict",
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      secure: true,
+      sameSite: "none",
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     },
   })
 );
