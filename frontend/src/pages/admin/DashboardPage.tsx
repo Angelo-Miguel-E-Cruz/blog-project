@@ -65,9 +65,13 @@ export function DashboardPage() {
         <div className="flex items-center gap-3">
           <Link
             to="/admin/posts/new"
-            className="bg-spruce dark:bg-mustard text-parchment dark:text-spruce px-4 py-2 rounded-sm text-sm font-medium no-underline hover:bg-spruce-light dark:hover:bg-mustard-dim select-none"
+            aria-label="New post"
+            className="flex items-center justify-center gap-1.5 bg-spruce dark:bg-mustard text-parchment dark:text-spruce w-9 h-9 sm:w-auto sm:px-4 sm:py-2 rounded-full sm:rounded-sm text-sm font-medium no-underline hover:bg-spruce-light dark:hover:bg-mustard-dim shrink-0 select-none"
           >
-            New post
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            <span className="hidden sm:inline select-none">New post</span>
           </Link>
           <AdminMenu onSignOut={() => logout()} />
         </div>

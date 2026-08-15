@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link as RouterLink } from "react-router-dom";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
@@ -25,7 +25,7 @@ function EditorToolbarButton({
     <button
       type="button"
       onClick={onClick}
-      className={`px-2.5 py-1.5 rounded-sm text-sm border border-ink/15 dark:border-parchment/20 ${
+      className={`px-2.5 py-1.5 rounded-sm text-sm border border-ink/15 dark:border-parchment/20 select-none ${
         active
           ? "bg-spruce dark:bg-mustard text-parchment dark:text-spruce"
           : "bg-white/60 dark:bg-parchment/10 dark:text-parchment hover:bg-white dark:hover:bg-parchment/20"
@@ -129,8 +129,16 @@ export function PostEditorPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="font-display text-2xl font-semibold">{isNew ? "New post" : "Edit post"}</h1>
-        <button onClick={() => setShowPreview((v) => !v)} className="text-sm text-mustard-dim dark:text-mustard">
+        <div>
+          <RouterLink
+            to="/admin"
+            className="text-sm text-ink/50 dark:text-parchment/50 no-underline hover:text-mustard-dim dark:hover:text-mustard select-none"
+          >
+            ← Dashboard
+          </RouterLink>
+          <h1 className="font-display text-2xl font-semibold mt-1 select-none">{isNew ? "New post" : "Edit post"}</h1>
+        </div>
+        <button onClick={() => setShowPreview((v) => !v)} className="text-sm text-mustard-dim dark:text-mustard select-none">
           {showPreview ? "Back to editing" : "Preview"}
         </button>
       </div>
@@ -141,7 +149,7 @@ export function PostEditorPage() {
           <RichTextRenderer content={(editor?.getJSON() ?? EMPTY_DOC) as any} />
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-4 select-none">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -195,7 +203,12 @@ export function PostEditorPage() {
             <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={handleImageUpload} />
           </div>
 
-          <div className="border border-ink/15 dark:border-parchment/20 rounded-sm bg-white/50 dark:bg-parchment/5 min-h-[300px] px-4 py-3">
+          <div
+            className="border border-ink/15 dark:border-parchment/20 rounded-sm bg-white/50 dark:bg-parchment/5 min-h-[300px] px-4 py-3"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) editor?.chain().focus("end").run();
+            }}
+          >
             <EditorContent editor={editor} className="prose-blog" />
           </div>
         </div>
